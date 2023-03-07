@@ -1,4 +1,4 @@
-# CrudApp V2.0.0
+# Hibernate App
 
 [![OS](https://img.shields.io/badge/OS-Microsoft%20W11-brightgreen)](https://www.microsoft.com/)
 [![IDE](https://img.shields.io/badge/IDE-Intellij%20IDEA-brightgreen)](https://www.jetbrains.com/)
