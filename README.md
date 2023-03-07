@@ -18,6 +18,9 @@
 > PostreSQL  
 ### Весь сервисный слой покрыт тестами.
 
+### Проблема N+1 Select'а.
+> Не возникает. Проверял при получении данных из БД (проверил по логам с включенными SQL запросами в конфи файле Hibernate).
+
 ### Для связи со мной  
 [![VK](https://img.shields.io/badge/вконтакте-%232E87FB.svg?&style=for-the-badge&logo=vk&logoColor=white)](https://vk.com/alvided)  
 
