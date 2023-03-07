@@ -43,7 +43,7 @@ public class SpecialtyRepository implements GenericRepository<Specialty, Long> {
             Transaction transaction = session.beginTransaction();
             Specialty specialtyForUpdate = session.get(Specialty.class, id);
             specialtyForUpdate.setName(specialtyForUpdate.getName());
-            session.update(specialtyForUpdate);
+            session.merge(specialtyForUpdate);
             transaction.commit();
         }
         return specialty;
@@ -55,7 +55,7 @@ public class SpecialtyRepository implements GenericRepository<Specialty, Long> {
 
             Transaction transaction = session.beginTransaction();
             Specialty specialtyForDelete = session.get(Specialty.class, id);
-            session.delete(specialtyForDelete);
+            session.remove(specialtyForDelete);
             transaction.commit();
             return specialtyForDelete;
         }

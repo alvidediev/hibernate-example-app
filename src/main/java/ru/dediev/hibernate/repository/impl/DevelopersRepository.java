@@ -47,10 +47,10 @@ public class DevelopersRepository implements GenericRepository<Developer, Long> 
     public Developer update(Developer developer, Long id) {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
-            Developer developer1 = session.get(Developer.class, id);
-            developer1.setLastName(developer.getLastName());
-            developer1.setFirstName(developer.getFirstName());
-            session.update(developer1);
+            Developer developerToUpdate = session.get(Developer.class, id);
+            developerToUpdate.setLastName(developer.getLastName());
+            developerToUpdate.setFirstName(developer.getFirstName());
+            session.merge(developerToUpdate);
             transaction.commit();
         }
         return developer;
@@ -62,7 +62,7 @@ public class DevelopersRepository implements GenericRepository<Developer, Long> 
 
             Transaction transaction = session.beginTransaction();
             Developer developerForDelete = session.get(Developer.class, id);
-            session.delete(developerForDelete);
+            session.remove(developerForDelete);
             transaction.commit();
             return developerForDelete;
         }

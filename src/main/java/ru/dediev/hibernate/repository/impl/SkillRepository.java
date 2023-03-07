@@ -43,7 +43,7 @@ public class SkillRepository implements GenericRepository<Skill, Long> {
             Transaction transaction = session.beginTransaction();
             Skill skillForUpdate = session.get(Skill.class, id);
             skillForUpdate.setName(skill.getName());
-            session.update(skillForUpdate);
+            session.merge(skillForUpdate);
             transaction.commit();
         }
         return skill;
@@ -54,7 +54,7 @@ public class SkillRepository implements GenericRepository<Skill, Long> {
         try (Session session = sessionFactory.openSession()) {
             Transaction transaction = session.beginTransaction();
             Skill skillForDelete = session.get(Skill.class, id);
-            session.delete(skillForDelete);
+            session.remove(skillForDelete);
             transaction.commit();
             return skillForDelete;
         }
