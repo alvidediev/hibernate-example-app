@@ -6,7 +6,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/alvidediev/crud-app-v2/badge)](https://www.codefactor.io/repository/github/alvidediev/crud-app-v2)  
 
 ### Логика  
-> СRUD приложение с использование Hibernate. Для миграций баз данных использован фреймворк Flyway
+> СRUD приложение с использованием Hibernate. Для миграций баз данных использован фреймворк Flyway
 
 ### Использованы технологии  
 > Java  
@@ -15,7 +15,7 @@
 > Mockito  
 > Lombok    
 ### Использована СУБД  
-> PostreSQL  
+> PostgreSQL  
 ### Весь сервисный слой покрыт тестами.
 
 ### Проблема N+1 Select'а.
