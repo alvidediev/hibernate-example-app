@@ -2,37 +2,37 @@ package ru.dediev.hibernate.controller;
 
 
 
-import ru.dediev.hibernate.model.entity.Developer;
-import ru.dediev.hibernate.service.impl.DeveloperService;
+import ru.dediev.hibernate.entity.DeveloperEntity;
+import ru.dediev.hibernate.service.impl.DeveloperServiceImpl;
 
 import java.util.List;
 
 public class DevelopersController {
 
-    private final DeveloperService developerService = new DeveloperService();
+    private final DeveloperServiceImpl developerServiceImpl = new DeveloperServiceImpl();
 
-    public Developer create(Developer developer) {
-        return developerService.save(developer);
+    public DeveloperEntity create(DeveloperEntity developerEntity) {
+        return developerServiceImpl.save(developerEntity);
     }
 
-    public Developer getById(Long id) {
-        return developerService.getById(id);
+    public DeveloperEntity getById(Long id) {
+        return developerServiceImpl.getById(id);
     }
 
-    public Developer read(Long id) {
-        return developerService.getById(id);
+    public DeveloperEntity read(Long id) {
+        return developerServiceImpl.getById(id);
     }
 
-    public List<Developer> readAll() {
-        return developerService.getAll();
+    public List<DeveloperEntity> readAll() {
+        return developerServiceImpl.getAll();
     }
 
-    public Developer update(Developer developer, Long id) {
-        developerService.update(developer, id);
-        return developer;
+    public DeveloperEntity update(DeveloperEntity developerEntity, Long id) {
+        developerServiceImpl.update(developerEntity, id);
+        return developerEntity;
     }
 
-    public Developer delete(Long id) {
-        return developerService.deleteById(id);
+    public DeveloperEntity delete(Long id) {
+        return developerServiceImpl.deleteById(id);
     }
 }

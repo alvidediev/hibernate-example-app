@@ -1,37 +1,37 @@
 package ru.dediev.hibernate.controller;
 
-import ru.dediev.hibernate.model.entity.Skill;
-import ru.dediev.hibernate.service.impl.SkillService;
+import ru.dediev.hibernate.entity.SkillEntity;
+import ru.dediev.hibernate.service.impl.SkillServiceImpl;
 
 import java.util.List;
 
 public class SkillsController {
 
-    private final SkillService skillService = new SkillService();
+    private final SkillServiceImpl skillServiceImpl = new SkillServiceImpl();
 
-    public Skill create(Skill skill){
-        return skillService.save(skill);
+    public SkillEntity create(SkillEntity skillEntity){
+        return skillServiceImpl.save(skillEntity);
     }
 
-    public Skill read(Long id){
-        return skillService.getById(id);
+    public SkillEntity read(Long id){
+        return skillServiceImpl.getById(id);
     }
 
 
-    public Skill getById(Long id){
-        return skillService.getById(id);
+    public SkillEntity getById(Long id){
+        return skillServiceImpl.getById(id);
     }
 
-    public List<Skill> readAll(){
-        return skillService.getAll();
+    public List<SkillEntity> readAll(){
+        return skillServiceImpl.getAll();
     }
 
-    public Skill update(Skill skill, Long id){
-        skillService.update(skill, id);
-        return skill;
+    public SkillEntity update(SkillEntity skillEntity, Long id){
+        skillServiceImpl.update(skillEntity, id);
+        return skillEntity;
     }
 
-    public Skill delete(Long id){
-        return skillService.deleteById(id);
+    public SkillEntity delete(Long id){
+        return skillServiceImpl.deleteById(id);
     }
 }

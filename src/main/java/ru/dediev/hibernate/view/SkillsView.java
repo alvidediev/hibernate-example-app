@@ -2,8 +2,8 @@ package ru.dediev.hibernate.view;
 
 import ru.dediev.hibernate.controller.DevelopersController;
 import ru.dediev.hibernate.controller.SkillsController;
-import ru.dediev.hibernate.model.entity.Skill;
-import ru.dediev.hibernate.model.entity.Status;
+import ru.dediev.hibernate.entity.SkillEntity;
+import ru.dediev.hibernate.entity.Status;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +52,9 @@ public class SkillsView {
         }
     }
 
-    public List<Skill> addSkill() {
+    public List<SkillEntity> addSkill() {
         scanner = new Scanner(System.in);
-        List<Skill> skills = new ArrayList<>();
+        List<SkillEntity> skillEntities = new ArrayList<>();
 
         boolean stopper = true;
         while (stopper) {
@@ -64,13 +64,13 @@ public class SkillsView {
             final int addSkillsChoice = scanner.nextInt();
             switch (addSkillsChoice) {
                 case 1:
-                    Skill skill = new Skill();
+                    SkillEntity skillEntity = new SkillEntity();
                     scanner = new Scanner(System.in);
                     System.out.println("Введите, пожалуйста, название вашего умения: ");
                     final String nameOfSkill = scanner.nextLine();
-                    skill.setName(nameOfSkill);
-                    skill.setStatus(Status.ACTIVE);
-                    skills.add(skill);
+                    skillEntity.setName(nameOfSkill);
+                    skillEntity.setStatus(Status.ACTIVE);
+                    skillEntities.add(skillEntity);
                     continue;
                 case 2:
                     stopper = false;
@@ -79,7 +79,7 @@ public class SkillsView {
                     System.out.println("Enter correct data...");
             }
         }
-        return skills;
+        return skillEntities;
     }
 
     private void getSkillById() {
@@ -87,8 +87,8 @@ public class SkillsView {
 
         System.out.println("Пожалуйста, введите ID скилла, который хотите найти: ");
         final Long skillId = scanner.nextLong();
-        final Skill skillById = skillsController.getById(skillId);
-        System.out.println("Найден скилл: " + skillById);
+        final SkillEntity skillEntityById = skillsController.getById(skillId);
+        System.out.println("Найден скилл: " + skillEntityById);
         startWorkWithSkills();
     }
 
@@ -99,15 +99,15 @@ public class SkillsView {
 
     private void updateSkill() {
         scanner = new Scanner(System.in);
-        Skill skill = new Skill();
+        SkillEntity skillEntity = new SkillEntity();
 
         System.out.println("Введите ID навыка, который хотите изменить:");
         final Long id = scanner.nextLong();
         System.out.println("Введите новое имя навыка");
         scanner.nextLine();
         final String name = scanner.nextLine();
-        skill.setName(name);
-        skillsController.update(skill, id);
+        skillEntity.setName(name);
+        skillsController.update(skillEntity, id);
         System.out.println("Вы успешно изменили навык " + skillsController.read(id));
         startWorkWithSkills();
     }

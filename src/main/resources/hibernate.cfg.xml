@@ -12,8 +12,8 @@
         <!--<property name="hibernate.hbm2ddl.auto">create</property>-->
         <property name="show_sql">true</property>
 
-        <mapping class="ru.dediev.hibernate.model.entity.Developer"/>
-        <mapping class="ru.dediev.hibernate.model.entity.Skill"/>
-        <mapping class="ru.dediev.hibernate.model.entity.Specialty"/>
+        <mapping class="ru.dediev.hibernate.entity.DeveloperEntity"/>
+        <mapping class="ru.dediev.hibernate.entity.SkillEntity"/>
+        <mapping class="ru.dediev.hibernate.entity.SpecialtyEntity"/>
     </session-factory>
 </hibernate-configuration>

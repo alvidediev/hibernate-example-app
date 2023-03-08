@@ -11,11 +11,11 @@
   <name>hibernate-example-app</name>
 
   <developers>
-    <developer>
+    <developerEntity>
       <name>Alvi</name>
       <email>huskartp@gmail.com</email>
       <url>t.me/alvi3d</url>
-    </developer>
+    </developerEntity>
   </developers>
 
   <properties>

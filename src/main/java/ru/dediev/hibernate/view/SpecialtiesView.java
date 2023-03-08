@@ -1,12 +1,11 @@
 package ru.dediev.hibernate.view;
 
-import ru.dediev.hibernate.controller.DevelopersController;
 import ru.dediev.hibernate.controller.SpecialtyController;
-import ru.dediev.hibernate.model.entity.Specialty;
+import ru.dediev.hibernate.entity.SpecialtyEntity;
 
 import java.util.Scanner;
 
-import static ru.dediev.hibernate.model.entity.Status.ACTIVE;
+import static ru.dediev.hibernate.entity.Status.ACTIVE;
 
 public class SpecialtiesView {
 
@@ -51,9 +50,9 @@ public class SpecialtiesView {
     }
 
 
-    public Specialty addSpecialty() {
+    public SpecialtyEntity addSpecialty() {
         scanner = new Scanner(System.in);
-        Specialty specialty = new Specialty();
+        SpecialtyEntity specialtyEntity = new SpecialtyEntity();
         boolean stopper = true;
         System.out.println("Хотите добавить специальность ?\nВыберите:\n1)Да\n2)Нет");
         while (stopper) {
@@ -63,8 +62,8 @@ public class SpecialtiesView {
                     scanner = new Scanner(System.in);
                     System.out.println("Пожалуйста, Введите название умения:");
                     String nameOfSpecialty = scanner.nextLine();
-                    specialty.setName(nameOfSpecialty);
-                    specialty.setStatus(ACTIVE);
+                    specialtyEntity.setName(nameOfSpecialty);
+                    specialtyEntity.setStatus(ACTIVE);
                     stopper = false;
                     continue;
                 case 2:
@@ -74,7 +73,7 @@ public class SpecialtiesView {
                     System.out.println("Enter correct data...");
             }
         }
-        return specialty;
+        return specialtyEntity;
     }
 
     private void showAllSpecialties() {
@@ -87,21 +86,21 @@ public class SpecialtiesView {
 
         System.out.println("Пожалуйста, введите ID специальности, которую хотите в базе данных: ");
         final Long specialtyId = scanner.nextLong();
-        final Specialty specialtyById = specialtyController.getById(specialtyId);
-        System.out.println("По ID:" + specialtyId + " найдена запись " + specialtyById);
+        final SpecialtyEntity specialtyEntityById = specialtyController.getById(specialtyId);
+        System.out.println("По ID:" + specialtyId + " найдена запись " + specialtyEntityById);
         startWorkWithSpecialties();
     }
 
     private void updateSpecialty() {
         scanner = new Scanner(System.in);
-        Specialty specialty = new Specialty();
+        SpecialtyEntity specialtyEntity = new SpecialtyEntity();
 
         System.out.println("Пожалуйста, введите ID специальности, которую хотите изменить:");
         final Long id = scanner.nextLong();
         System.out.println("Введите новое имя специальности:");
         final String changedSpecialtyName = scanner.nextLine();
-        specialty.setName(changedSpecialtyName);
-        specialtyController.update(specialty, id);
+        specialtyEntity.setName(changedSpecialtyName);
+        specialtyController.update(specialtyEntity, id);
         System.out.println("Вы успешно изменили специальность " + specialtyController.read(id));
         startWorkWithSpecialties();
     }

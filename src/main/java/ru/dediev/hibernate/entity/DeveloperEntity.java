@@ -1,8 +1,10 @@
-package ru.dediev.hibernate.model.entity;
+package ru.dediev.hibernate.entity;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -11,9 +13,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "developers")
-@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
-public class Developer implements Serializable {
+@Setter
+public class DeveloperEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "developer_id")
@@ -25,43 +29,39 @@ public class Developer implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
             @JoinTable(
                     name = "developers_skills",
                     joinColumns = {@JoinColumn(name = "developers_skills_developer_id")},
                     inverseJoinColumns = {@JoinColumn(name = "developers_skills_skill_id")}
             )
-    private List<Skill> skill = new ArrayList<>();
+    private List<SkillEntity> skillEntity = new ArrayList<>();
 
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "specialty_id")
-    private Specialty specialty;
+    private SpecialtyEntity specialtyEntity;
 
     @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
-
-    public Developer(String firstName, String lastName, List<Skill> skill, Specialty specialty, Status status) {
+    public DeveloperEntity(String firstName, String lastName, List<SkillEntity> skillEntity, SpecialtyEntity specialtyEntity, Status status) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.skill = skill;
-        this.specialty = specialty;
+        this.skillEntity = skillEntity;
+        this.specialtyEntity = specialtyEntity;
         this.status = status;
-    }
-
-    public Developer() {
     }
 
     @Override
     public String toString() {
-        return "Developer{" +
+        return "DeveloperEntity{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", skill=" + skill +
-                ", specialty=" + specialty +
+                ", skillEntity=" + skillEntity +
+                ", specialtyEntity=" + specialtyEntity +
                 ", status=" + status +
                 '}';
     }

@@ -1,37 +1,37 @@
 package ru.dediev.hibernate.controller;
 
-import ru.dediev.hibernate.model.entity.Specialty;
-import ru.dediev.hibernate.service.impl.SpecialtyService;
+import ru.dediev.hibernate.entity.SpecialtyEntity;
+import ru.dediev.hibernate.service.impl.SpecialtyServiceImpl;
 
 import java.util.List;
 
 public class SpecialtyController {
 
-    private final SpecialtyService specialtyService = new SpecialtyService();
+    private final SpecialtyServiceImpl specialtyServiceImpl = new SpecialtyServiceImpl();
 
-    public Specialty create(Specialty specialty) {
-        return specialtyService.save(specialty);
+    public SpecialtyEntity create(SpecialtyEntity specialtyEntity) {
+        return specialtyServiceImpl.save(specialtyEntity);
     }
 
-    public Specialty read(Long id) {
-        return specialtyService.getById(id);
+    public SpecialtyEntity read(Long id) {
+        return specialtyServiceImpl.getById(id);
     }
 
 
-    public Specialty getById(Long id) {
-        return specialtyService.getById(id);
+    public SpecialtyEntity getById(Long id) {
+        return specialtyServiceImpl.getById(id);
     }
 
-    public List<Specialty> readAll() {
-        return specialtyService.getAll();
+    public List<SpecialtyEntity> readAll() {
+        return specialtyServiceImpl.getAll();
     }
 
-    public Specialty update(Specialty specialty, Long id) {
-        specialtyService.update(specialty, id);
-        return specialty;
+    public SpecialtyEntity update(SpecialtyEntity specialtyEntity, Long id) {
+        specialtyServiceImpl.update(specialtyEntity, id);
+        return specialtyEntity;
     }
 
-    public Specialty delete(Long id) {
-        return specialtyService.deleteById(id);
+    public SpecialtyEntity delete(Long id) {
+        return specialtyServiceImpl.deleteById(id);
     }
 }

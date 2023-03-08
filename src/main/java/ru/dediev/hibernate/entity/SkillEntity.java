@@ -1,40 +1,43 @@
-package ru.dediev.hibernate.model.entity;
+package ru.dediev.hibernate.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "skill")
 @NoArgsConstructor
-@Setter
+@AllArgsConstructor
 @Getter
-@Table(name = "specialty")
-public class Specialty implements Serializable {
+@Setter
+public class SkillEntity implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "specialty_id")
+    @Column(name = "skill_id")
     private Long id;
-    @Column(name = "specialty_name")
+
+    @Column(name = "skill_name")
     private String name;
-    @OneToMany(mappedBy = "specialty")
-    private List<Developer> developers = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY,mappedBy = "skillEntity")
+    List<DeveloperEntity> developerEntities = new ArrayList<>();
+
     @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 
-    public Specialty(String name, Status status) {
+    public SkillEntity(String name, Status status) {
         this.name = name;
         this.status = status;
     }
 
     @Override
     public String toString() {
-        return "Specialty{" +
+        return "SkillEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", status=" + status +

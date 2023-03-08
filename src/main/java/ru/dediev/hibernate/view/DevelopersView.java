@@ -1,10 +1,10 @@
 package ru.dediev.hibernate.view;
 
 import ru.dediev.hibernate.controller.DevelopersController;
-import ru.dediev.hibernate.model.entity.Developer;
-import ru.dediev.hibernate.model.entity.Skill;
-import ru.dediev.hibernate.model.entity.Specialty;
-import ru.dediev.hibernate.model.entity.Status;
+import ru.dediev.hibernate.entity.DeveloperEntity;
+import ru.dediev.hibernate.entity.SkillEntity;
+import ru.dediev.hibernate.entity.SpecialtyEntity;
+import ru.dediev.hibernate.entity.Status;
 
 import java.util.List;
 import java.util.Scanner;
@@ -61,15 +61,21 @@ public class DevelopersView {
 
     private void addDeveloper() {
         scanner = new Scanner(System.in);
-        Developer developer;
+        DeveloperEntity developerEntity;
         System.out.println("Пожалуйста! Введите фамилию разработчика:");
         String developersFirstName = scanner.nextLine();
         System.out.println("Пожалуйста! Введите имя разработчика:");
         String developersLastName = scanner.nextLine();
-        final List<Skill> skills = skillsView.addSkill();
-        final Specialty specialty = specialtiesView.addSpecialty();
-        developer = new Developer(developersFirstName,developersLastName, skills, specialty, Status.ACTIVE);
-        devsController.create(developer);
+        final List<SkillEntity> skillEntities = skillsView.addSkill();
+        final SpecialtyEntity specialtyEntity = specialtiesView.addSpecialty();
+        developerEntity = new DeveloperEntity(
+                null,
+                developersFirstName,
+                developersLastName,
+                skillEntities,
+                specialtyEntity,
+                Status.ACTIVE);
+        devsController.create(developerEntity);
         startWorkWithDevelopers();
     }
 
@@ -78,8 +84,8 @@ public class DevelopersView {
 
         System.out.println("Пожалуйста введите ID для поиска:\n");
         final Long idOfDeveloper = scanner.nextLong();
-       final Developer developerById = devsController.getById(idOfDeveloper);
-       System.out.println("По ID " + idOfDeveloper + " найден разработчик: " + developerById);
+       final DeveloperEntity developerEntityById = devsController.getById(idOfDeveloper);
+       System.out.println("По ID " + idOfDeveloper + " найден разработчик: " + developerEntityById);
     }
 
     private void showAllDevs() {
@@ -89,7 +95,7 @@ public class DevelopersView {
 
     private void updateDeveloper() {
         scanner = new Scanner(System.in);
-        Developer developer = new Developer();
+        DeveloperEntity developerEntity = new DeveloperEntity();
         System.out.println(devsController.readAll());
         System.out.println("Введите ID разработчика, которого хотите отредактировать");
         Long id = scanner.nextLong();
@@ -97,9 +103,9 @@ public class DevelopersView {
         String firstName = scanner.nextLine();
         System.out.println("Введите новое имя для разработчика");
         String lastName = scanner.nextLine();
-        developer.setFirstName(firstName);
-        developer.setLastName(lastName);
-        devsController.update(developer, id);
+        developerEntity.setFirstName(firstName);
+        developerEntity.setLastName(lastName);
+        devsController.update(developerEntity, id);
         System.out.println(devsController.read(id));
         startWorkWithDevelopers();
     }

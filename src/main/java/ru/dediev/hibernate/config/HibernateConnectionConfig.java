@@ -1,5 +1,6 @@
 package ru.dediev.hibernate.config;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -16,4 +17,8 @@ public class HibernateConnectionConfig {
         }
         return factory;
     }
+    public static synchronized Session getSession() {
+        return getSessionFactory().openSession();
+    }
+
 }
